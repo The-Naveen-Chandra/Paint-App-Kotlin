@@ -1,5 +1,6 @@
 package com.example.paintapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -15,8 +16,8 @@ class PaintView : View {
     private var params: ViewGroup.LayoutParams? = null
 
     companion object {
-        private val pathList = ArrayList<Path>()
-        private val colorList = ArrayList<Int>()
+        val pathList = ArrayList<Path>()
+        val colorList = ArrayList<Int>()
         var currentBrush = Color.BLACK
     }
 
@@ -45,6 +46,7 @@ class PaintView : View {
         params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val x = event.x
         val y = event.y
@@ -70,6 +72,7 @@ class PaintView : View {
         for (i in pathList.indices) {
             paintBrush.color = colorList[i]
             canvas.drawPath(pathList[i], paintBrush)
+            invalidate()
         }
     }
 }
