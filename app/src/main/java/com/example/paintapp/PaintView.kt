@@ -9,20 +9,18 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import com.example.paintapp.MainActivity.Companion.paintBrush
-import com.example.paintapp.MainActivity.Companion.path
 
 class PaintView : View {
 
-    var params : ViewGroup.LayoutParams? = null
+    private var params: ViewGroup.LayoutParams? = null
 
     companion object {
-        var pathList = ArrayList<Paint>()
-        var colorList = ArrayList<Int>()
+        private val pathList = ArrayList<Path>()
+        private val colorList = ArrayList<Int>()
         var currentBrush = Color.BLACK
     }
 
-    private var paintBrush = Paint()
+    private val paintBrush = Paint()
     private var path = Path()
 
     constructor(context: Context) : this(context, null) {
@@ -48,17 +46,19 @@ class PaintView : View {
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        var x = event.x
-        var y = event.y
+        val x = event.x
+        val y = event.y
 
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                path = Path()  // Create a new path for each touch gesture
                 path.moveTo(x, y)
                 return true
             }
             MotionEvent.ACTION_MOVE -> {
                 path.lineTo(x, y)
                 pathList.add(path)
+                colorList.add(currentBrush)
             }
             else -> return false
         }
