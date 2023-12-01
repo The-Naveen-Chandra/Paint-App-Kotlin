@@ -29,25 +29,25 @@ class MainActivity : AppCompatActivity() {
         val eraser = findViewById<ImageButton>(R.id.whiteColor)
 
         redBtn.setOnClickListener{
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Red pen selected", Toast.LENGTH_SHORT).show()
             paintBrush.color = Color.RED
             currentColor(paintBrush.color)
         }
 
         blueBtn.setOnClickListener{
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Blue pen selected", Toast.LENGTH_SHORT).show()
             paintBrush.color = Color.BLUE
             currentColor(paintBrush.color)
         }
 
         blackBtn.setOnClickListener{
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Black pen selected", Toast.LENGTH_SHORT).show()
             paintBrush.color = Color.BLACK
             currentColor(paintBrush.color)
         }
 
         eraser.setOnClickListener{
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Eraser selected", Toast.LENGTH_SHORT).show()
             pathList.clear()
             colorList.clear()
             path.reset()
